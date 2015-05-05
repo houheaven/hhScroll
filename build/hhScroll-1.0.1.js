@@ -773,7 +773,7 @@ function Slider(container,option)
 		shadowWidth:3,					// 阴影效果，阴影大小
 		shadowColor:"rgba(0,0,0,0.3)",	// 阴影效果，阴影颜色
 		smartDetect:true,		// 智能检测，运行时自动检测是否为移动终端
-		enableSwipe:true,		// 手指滑动：true（开启）|false（关闭）
+		enableSwipe:false,		// 手指滑动：true（开启）|false（关闭）
 		autoScroll:true,		// 自动切换，默认 true
 		scrollTime:500,			// 切换时间，默认 0.5s
 		scrollLife:3500,		// 切换周期，默认 3.5s
@@ -799,10 +799,18 @@ function Slider(container,option)
 	}
 	
 	// 智能检测
-	if( opt.smartDetect && /(iPhone|iPod|Android|ios)/i.test(navigator.userAgent))
+	if( opt.smartDetect )
 	{
-		opt.enableSwipe = true;
-		opt.controller = false;
+		// 初始化（保证开启智能检测时，单独修改 控制器和滑动手势 不会生效）
+		opt.controller = true;
+		opt.enableSwipe = false;
+		
+		// 移动端
+		if( /(iPhone|iPod|Android|ios)/i.test(navigator.userAgent) )
+		{
+			opt.controller = false;
+			opt.enableSwipe = true;
+		}
 	}
 	
 	var img_num;
