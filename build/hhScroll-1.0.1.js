@@ -3,7 +3,7 @@
 //
 //  hhScroll
 //
-//  Ver ：1.0.0
+//  Ver ：1.0.1
 //  Author : Eric
 //  Website : www.houheaven.com/code/hhscroll
 //  Date : 2015-05-01
